@@ -53,10 +53,10 @@ if ($admin_islogin != 1) exit("<script language='javascript'>window.location.hre
                     formatter: function(value, row, index) {
                         switch (value) {
                             case '1':
-                                return '<a href="javascript:appSetStatus(' + row.domain_id + ', 0)" class="btn btn-success btn-xs" title="点击关闭">启用</a>';
+                                return '<a href="javascript:appSetStatus(' + row.domain_id + ', 0)" class="btn btn-success btn-xs" title="点击设置为无效">有效</a>';
                                 break;
                             default:
-                                return '<a href="javascript:appSetStatus(' + row.domain_id + ', 1)" class="btn btn-warning btn-xs" title="点击启用">关闭</a>';
+                                return '<a href="javascript:appSetStatus(' + row.domain_id + ', 1)" class="btn btn-warning btn-xs" title="点击设置为有效">无效</a>';
                                 break;
                         }
                     }

@@ -8,7 +8,7 @@ if ($admin_islogin == 1) {
 ?>
 <?php
 $mysqlversion = $DB->getColumn("select VERSION()");
-$checkupdate = '//auth.cccyun.cc/app/pan.php?ver=' . VERSION;
+$checkupdate = '//auth.u-id.cn/app/php-app-domain.php?ver=' . VERSION;
 ?>
 <link href="../assets/css/admin.css" rel="stylesheet" />
 <div class="container" style="padding-top:70px;">
@@ -26,13 +26,13 @@ $checkupdate = '//auth.cccyun.cc/app/pan.php?ver=' . VERSION;
                                 <div class="huge">
                                     <span id="count_domain">0</span>/<span class="count-all" id="count_domains">0</span>
                                 </div>
-                                <div>域名数量</div>
+                                <div>可用域名/累计数量</div>
                             </div>
                         </div>
                     </div>
                     <a href="domain.php">
                         <div class="panel-footer">
-                            <span class="pull-left" herf="file.php">查看详情</span>
+                            <span class="pull-left" herf="file.php">查看所有域名详情</span>
                             <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                             <div class="clearfix"></div>
                         </div>
@@ -68,7 +68,7 @@ $checkupdate = '//auth.cccyun.cc/app/pan.php?ver=' . VERSION;
                     <div class="panel-heading">
                         <div class="row">
                             <div class="col-xs-3">
-                                <i class="fa fa-user fa-5x"></i>
+                                <i class="fa fa-history fa-5x"></i>
                             </div>
                             <div class="col-xs-9 text-right">
                                 <div class="huge">
@@ -102,7 +102,7 @@ $checkupdate = '//auth.cccyun.cc/app/pan.php?ver=' . VERSION;
                     </div>
                     <a href="order.php">
                         <div class="panel-footer">
-                            <span class="pull-left">查看详情</span>
+                            <span class="pull-left">查看订单详情</span>
                             <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                             <div class="clearfix"></div>
                         </div>
@@ -115,7 +115,7 @@ $checkupdate = '//auth.cccyun.cc/app/pan.php?ver=' . VERSION;
         <div class="panel panel-danger">
             <div class="list-group">
                 <div class="list-group-item">
-                    <span class="fa fa-trash fa-fw"></span> <b>数据清理：</b>
+                    <span class="fa fa-air fa-fw"></span> <b>快捷操作：</b>
                     <a href="javascript:cleanlogin()" class="btn btn-sm btn-danger">删除1天前的登录记录</a>&nbsp;&nbsp;
                 </div>
             </div>

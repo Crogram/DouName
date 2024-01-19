@@ -14,7 +14,7 @@ switch ($act) {
         $sql = " 1=1";
         $order_domain = trim($_POST['domain']);
         $order_from = trim($_POST['order_from']);
-        $order_type = trim($_POST['type']);
+        $order_type = trim($_POST['order_type']);
 
         if (!empty($order_domain)) {
             $sql .= " AND order_domain='{$order_domain}'";
@@ -53,6 +53,15 @@ switch ($act) {
 
         // exit(json_encode(['total' => $total, 'rows' => $list]));
         // break;
+    case 'remark':
+        $order_id = intval($_POST['id']);
+        $order_remark = trim(daddslashes($_POST['remark']));
+        if (empty($order_id)) exit('{"code":-1,"msg":"id不能为空"}');
+        if (!$DB->update('order', array('order_remark' => $order_remark, 'update_time' => date("Y-m-d H:i:s")), ['order_id' => $order_id])) {
+            exit('{"code":-1,"msg":"修改备注失败[' . $DB->error() . ']"}');
+        }
+        exit('{"code":0,"msg":"修改备注成功！"}');
+        break;
     default:
         exit('{"code":-4,"msg":"No Act"}');
         break;

@@ -89,7 +89,6 @@ switch ($act) {
         $winfo = '';
 
         if (!empty($result['rawdata'])) {
-            // $winfo .= '<pre>' . implode($result['rawdata'], "\n") . '</pre>';
             $winfo .= implode($result['rawdata'], "\n");
         } else {
             $winfo = implode($whois->Query['errstr'], "\n<br></br>");

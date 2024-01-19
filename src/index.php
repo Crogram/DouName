@@ -14,6 +14,8 @@ include("./includes/common.php");
     <title><?php echo $conf['site_title']; ?></title>
     <meta name="keywords" content="<?php echo $conf['site_keywords'] ?>">
     <meta name="description" content="<?php echo $conf['site_description'] ?>">
+    <meta name="copyright" content="<?php echo $conf['site_copyright']?>" />
+
     <!-- Mobile support -->
     <meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no;">
     <meta name="apple-mobile-web-app-capable" content="yes">
