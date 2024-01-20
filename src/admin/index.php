@@ -139,7 +139,7 @@ $checkupdate = '//auth.u-id.cn/app/php-app-domain.php?ver=' . VERSION;
                             <b>MySQL 版本：</b><?php echo $mysqlversion ?>
                         </li>
                         <li class="list-group-item">
-                            <b>WEB软件：</b><?php echo $_SERVER['SERVER_SOFTWARE'] ?>
+                            <b>WEB 软件：</b><?php echo $_SERVER['SERVER_SOFTWARE'] ?>
                         </li>
                         <li class="list-group-item">
                             <b>操作系统：</b><?php echo php_uname(); ?>
@@ -148,7 +148,7 @@ $checkupdate = '//auth.u-id.cn/app/php-app-domain.php?ver=' . VERSION;
                             <b>服务器时间：</b><?php echo $date ?>
                         </li>
                         <li class="list-group-item">
-                            <b>POST许可：</b><?php echo ini_get('post_max_size'); ?>
+                            <b>POST 许可：</b><?php echo ini_get('post_max_size'); ?>
                         </li>
                         <li class="list-group-item">
                             <b>文件上传许可：</b><?php echo ini_get('upload_max_filesize'); ?>
