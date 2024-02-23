@@ -12,6 +12,11 @@ if ($admin_islogin != 1) exit("<script language='javascript'>window.location.hre
                 <label>搜索</label>
                 <input type="text" class="form-control" name="kw" placeholder="要搜索的域名">
             </div>
+            <select class="form-control" name="domain_status">
+                <option value="">域名状态</option>
+                <option value="1">有效</option>
+                <option value="0">无效</option>
+            </select>
             <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 搜索</button>
             <a href="javascript:searchClear()" class="btn btn-default" title="重置筛选列表"><i class="fa fa-refresh"></i> 重置</a>
             <a href="javascript:appAddDomain()" class="btn btn-success"><i class="fa fa-plus"></i> 添加</a>

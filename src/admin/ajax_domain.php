@@ -13,9 +13,9 @@ switch ($act) {
     case 'list':
         $sql = " 1=1";
         // $type_arr = array('aliyun' => 'aliyun', 'juming' => '聚名网', 'tencent' => '腾讯', 'xinnet' => '新网');
-        if (isset($_POST['dstatus']) && $_POST['dstatus'] > -1) {
-            $dstatus = intval($_POST['dstatus']);
-            $sql .= " AND `enable`={$dstatus}";
+        if (isset($_POST['domain_status']) && $_POST['domain_status'] != '') {
+            $domain_status = $_POST['domain_status'];
+            $sql .= " AND `domain_status`={$domain_status}";
         }
         if (isset($_POST['kw']) && !empty($_POST['kw'])) {
             $kw = trim(daddslashes($_POST['kw']));

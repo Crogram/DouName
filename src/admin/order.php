@@ -30,8 +30,10 @@ if ($admin_islogin != 1) exit("<script language='javascript'>window.location.hre
                     <option value="juming">聚名网</option>
                     <option value="xinnet">新网</option>
                     <option value="huaweicloud">华为云</option>
+                    <option value="zzidc">景安</option>
                     <option value="72e">联动天下</option>
                     <option value="google">Google Domains</option>
+                    <option value="cloudflare">Cloudflare</option>
                 </select>
                 <div class="form-group">
                     <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i> 搜索</button>
@@ -126,6 +128,12 @@ if ($admin_islogin != 1) exit("<script language='javascript'>window.location.hre
                                 break;
                             case 'google':
                                 return 'Google Domains';
+                                break;
+                            case 'zzidc':
+                                return '景安';
+                                break;
+                            case 'cloudflare':
+                                return 'Cloudflare';
                                 break;
                         }
                     }
