@@ -17,6 +17,29 @@ if ($admin_islogin != 1) exit("<script language='javascript'>window.location.hre
                 <option value="1">有效</option>
                 <option value="0">无效</option>
             </select>
+            <select class="form-control" name="domain_provider">
+                <option value="">域名服务商</option>
+                <option value="aliyun">阿里云</option>
+                <option value="tencent">腾讯</option>
+                <option value="juming">聚名网</option>
+                <option value="xinnet">新网</option>
+                <option value="huaweicloud">华为云</option>
+                <option value="zzidc">景安</option>
+                <option value="72e">联动天下</option>
+                <option value="google">Google</option>
+                <option value="cloudflare">Cloudflare</option>
+                <option value="squarespace">Squarespace</option>
+            </select>
+            <select class="form-control" name="domain_registrar">
+                <option value="">域名注册商</option>
+                <option value="aliyun">阿里云</option>
+                <option value="tencent">腾讯</option>
+                <option value="juming">聚名网</option>
+                <option value="xinnet">新网</option>
+                <option value="72e">联动天下</option>
+                <option value="cloudflare">Cloudflare</option>
+                <option value="squarespace">Squarespace</option>
+            </select>
             <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i> 搜索</button>
             <a href="javascript:searchClear()" class="btn btn-default" title="重置筛选列表"><i class="fa fa-refresh"></i> 重置</a>
             <a href="javascript:appAddDomain()" class="btn btn-success"><i class="fa fa-plus"></i> 添加</a>
@@ -71,6 +94,76 @@ if ($admin_islogin != 1) exit("<script language='javascript'>window.location.hre
                     title: '备注',
                     formatter: function(value, row, index) {
                         return '<span onClick="appEditRemarks(\'' + row.domain_id + '\', \'' + (value || '') + '\')">' + (value || '-') + '</span>';
+                    }
+                },
+                {
+                    field: 'domain_provider',
+                    title: '服务商',
+                    formatter: function(value, row, index) {
+                        switch (String(value)) {
+                            case 'aliyun':
+                                return '阿里云';
+                                break;
+                            case 'tencent':
+                                return '腾讯';
+                                break;
+                            case 'juming':
+                                return '聚名网';
+                                break;
+                            case 'xinnet':
+                                return '新网';
+                                break;
+                            case 'huaweicloud':
+                                return '华为云';
+                                break;
+                            case '72e':
+                                return '联动天下';
+                                break;
+                            case 'zzidc':
+                                return '景安';
+                                break;
+                            case 'google':
+                                return 'Google';
+                                break;
+                            case 'cloudflare':
+                                return 'Cloudflare';
+                                break;
+                            case 'squarespace':
+                                return 'Squarespace';
+                                break;
+                        }
+                    }
+                },
+                {
+                    field: 'domain_registrar',
+                    title: '注册商',
+                    formatter: function(value, row, index) {
+                        switch (String(value)) {
+                            case 'aliyun':
+                                return '阿里云';
+                                break;
+                            case 'tencent':
+                                return '腾讯';
+                                break;
+                            case 'juming':
+                                return '聚名网';
+                                break;
+                            case 'xinnet':
+                                return '新网';
+                                break;
+                            case '72e':
+                                return '联动天下';
+                                break;
+                            case 'google':
+                                return 'Google';
+                                break;
+                            case 'cloudflare':
+                                return 'Cloudflare';
+                                break;
+                            case 'squarespace':
+                                return 'Squarespace';
+                                break;
+                        }
                     }
                 },
                 {

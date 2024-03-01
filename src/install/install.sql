@@ -33,7 +33,7 @@ DROP TABLE IF EXISTS `pre_order`;
 CREATE TABLE `pre_order` (
   `order_id` int(11) unsigned NOT NULL AUTO_INCREMENT,
   `order_domain` char(255) NOT NULL COMMENT '域名',
-  `order_from` char(255) DEFAULT NULL COMMENT '订单来源',
+  `order_provider` char(255) DEFAULT NULL COMMENT '订单服务商',
   `order_type` varchar(255) DEFAULT NULL COMMENT '订单类型',
   `order_costs` char(11) DEFAULT NULL COMMENT '订单费用',
   `create_time` datetime DEFAULT NULL COMMENT '订单时间',

@@ -13,14 +13,14 @@ switch ($act) {
     case 'list':
         $sql = " 1=1";
         $order_domain = trim($_POST['domain']);
-        $order_from = trim($_POST['order_from']);
+        $order_provider = trim($_POST['order_provider']);
         $order_type = trim($_POST['order_type']);
 
         if (!empty($order_domain)) {
             $sql .= " AND order_domain='{$order_domain}'";
         }
-        if (!empty($order_from)) {
-            $sql .= " AND order_from='{$order_from}'";
+        if (!empty($order_provider)) {
+            $sql .= " AND order_provider='{$order_provider}'";
         }
         if (!empty($order_type)) {
             $sql .= " AND `order_type`='{$order_type}'";

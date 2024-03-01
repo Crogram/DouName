@@ -23,8 +23,8 @@ if ($admin_islogin != 1) exit("<script language='javascript'>window.location.hre
                     <option value="转出">转出</option>
                     <option value="售出">售出</option>
                 </select>
-                <select class="form-control" name="order_from">
-                    <option value="">订单来源</option>
+                <select class="form-control" name="order_provider">
+                    <option value="">订单服务商</option>
                     <option value="aliyun">阿里云</option>
                     <option value="tencent">腾讯</option>
                     <option value="juming">聚名网</option>
@@ -32,7 +32,7 @@ if ($admin_islogin != 1) exit("<script language='javascript'>window.location.hre
                     <option value="huaweicloud">华为云</option>
                     <option value="zzidc">景安</option>
                     <option value="72e">联动天下</option>
-                    <option value="google">Google Domains</option>
+                    <option value="google">Google</option>
                     <option value="cloudflare">Cloudflare</option>
                 </select>
                 <div class="form-group">
@@ -104,8 +104,8 @@ if ($admin_islogin != 1) exit("<script language='javascript'>window.location.hre
                     }
                 },
                 {
-                    field: 'order_from',
-                    title: '订单来源',
+                    field: 'order_provider',
+                    title: '订单服务商',
                     formatter: function(value, row, index) {
                         switch (String(value)) {
                             case 'aliyun':
@@ -127,7 +127,7 @@ if ($admin_islogin != 1) exit("<script language='javascript'>window.location.hre
                                 return '联动天下';
                                 break;
                             case 'google':
-                                return 'Google Domains';
+                                return 'Google';
                                 break;
                             case 'zzidc':
                                 return '景安';

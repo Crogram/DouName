@@ -12,17 +12,26 @@ if (!checkRefererHost()) exit('{"code":403}');
 switch ($act) {
     case 'list':
         $sql = " 1=1";
+        $domain_kw = isset($_POST['kw']) && !empty($_POST['kw']) ? trim(daddslashes($_POST['kw'])) : null;
+        $domain_status = isset($_POST['domain_status']) ?intval($_POST['domain_status']) : '';
+        $domain_registrar = isset($_POST['domain_registrar']) && !empty($_POST['domain_registrar']) ? trim(daddslashes($_POST['domain_registrar'])) : null;
+        $domain_provider = isset($_POST['domain_provider']) && !empty($_POST['domain_provider']) ? trim(daddslashes($_POST['domain_provider'])) : null;
+        $domain_name = isset($_POST['domain_name']) && !empty($_POST['domain_name']) ? trim(daddslashes($_POST['domain_name'])) : null;
         // $type_arr = array('aliyun' => 'aliyun', 'juming' => '聚名网', 'tencent' => '腾讯', 'xinnet' => '新网');
-        if (isset($_POST['domain_status']) && $_POST['domain_status'] != '') {
-            $domain_status = $_POST['domain_status'];
+        if ($domain_status != '') {
+            // $domain_status = $_POST['domain_status'];
             $sql .= " AND `domain_status`={$domain_status}";
         }
-        if (isset($_POST['kw']) && !empty($_POST['kw'])) {
-            $kw = trim(daddslashes($_POST['kw']));
-            $sql .= " AND `domain_name` LIKE '%{$kw}%'";
-        } else if (isset($_POST['domain_name']) && !empty($_POST['domain_name'])) {
-            $domain_name = trim(daddslashes($_POST['domain_name']));
+        if (!empty($domain_kw)) {
+            $sql .= " AND `domain_name` LIKE '%{$domain_kw}%'";
+        } else if (!empty($domain_name)) {
             $sql .= " AND `domain_name`='{$domain_name}'";
+        }
+        if (!empty($domain_provider)) {
+            $sql .= " AND domain_provider='{$domain_provider}'";
+        }
+        if (!empty($domain_registrar)) {
+            $sql .= " AND domain_registrar='{$domain_registrar}'";
         }
         $offset = intval($_POST['offset']);
         $limit = intval($_POST['limit']);

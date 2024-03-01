@@ -112,11 +112,12 @@ $checkupdate = '//auth.u-id.cn/app/php-app-domain.php?ver=' . VERSION;
         </div>
         <!-- /.row -->
 
-        <div class="panel panel-danger">
+        <div class="panel panel-info">
             <div class="list-group">
                 <div class="list-group-item">
                     <span class="fa fa-air fa-fw"></span> <b>快捷操作：</b>
-                    <a href="javascript:cleanlogin()" class="btn btn-sm btn-danger">删除1天前的登录记录</a>&nbsp;&nbsp;
+                    <a href="javascript:appAddDomain()" class="btn btn-sm btn-primary">添加域名</a>&nbsp;&nbsp;
+                    <a href="javascript:appAddDomain()" class="btn btn-sm btn-danger">添加订单</a>&nbsp;&nbsp;
                 </div>
             </div>
         </div>
@@ -127,6 +128,12 @@ $checkupdate = '//auth.u-id.cn/app/php-app-domain.php?ver=' . VERSION;
                         <h3 class="panel-title">服务器信息</h3>
                     </div>
                     <ul class="list-group">
+                        <li class="list-group-item">
+                            <b>服务器时间：</b><?php echo $date ?>
+                        </li>
+                        <li class="list-group-item">
+                            <b>操作系统：</b><?php echo php_uname(); ?>
+                        </li>
                         <li class="list-group-item">
                             <b>PHP 版本：</b><?php echo phpversion() ?>
                             <?php if (ini_get('safe_mode')) {
@@ -140,12 +147,6 @@ $checkupdate = '//auth.u-id.cn/app/php-app-domain.php?ver=' . VERSION;
                         </li>
                         <li class="list-group-item">
                             <b>WEB 软件：</b><?php echo $_SERVER['SERVER_SOFTWARE'] ?>
-                        </li>
-                        <li class="list-group-item">
-                            <b>操作系统：</b><?php echo php_uname(); ?>
-                        </li>
-                        <li class="list-group-item">
-                            <b>服务器时间：</b><?php echo $date ?>
                         </li>
                         <li class="list-group-item">
                             <b>POST 许可：</b><?php echo ini_get('post_max_size'); ?>
@@ -196,37 +197,52 @@ $checkupdate = '//auth.u-id.cn/app/php-app-domain.php?ver=' . VERSION;
         })
     })
 
-    function cleanlogin() {
-        var confirmobj = layer.confirm('是否确定删除1天前的登录记录 ？', {
-            btn: ['确定', '取消']
-        }, function() {
-            var ii = layer.load(2);
-            $.ajax({
-                type: "POST",
-                url: "ajax.php?act=cleanlogin",
-                dataType: 'json',
-                success: function(data) {
-                    layer.close(ii);
-                    if (data.code == 0) {
-                        layer.alert(data.msg || '删除成功！', {
-                            icon: 1,
-                            closeBtn: false
-                        }, function() {
-                            window.location.reload()
-                        });
-                    } else {
-                        layer.alert(data.msg || '删除失败！', {
-                            icon: 2
-                        });
-                    }
-                },
-                error: function(data) {
-                    layer.close(ii);
-                    layer.msg('服务器错误');
+    function appAddDomain() {
+        var adduid = $("input[name='uid']").val();
+        layer.open({
+            type: 1,
+            area: ['350px'],
+            closeBtn: 2,
+            title: '添加域名',
+            content: '<div style="padding:15px 15px 0 15px"><div class="form-group"><input class="form-control" type="text" name="content" value="" autocomplete="off" placeholder="请输入域名，顶级域名，不带www"></div></div>',
+            btn: ['确认', '取消'],
+            yes: function() {
+                var content = $("input[name='content']").val();
+                if (content == '') {
+                    $("input[name='content']").focus();
+                    return;
                 }
-            })
-        }, function() {
-            layer.close(confirmobj);
+                var ii = layer.load(2, {
+                    shade: [0.1, '#fff']
+                });
+                $.ajax({
+                    type: 'POST',
+                    url: 'ajax_domain.php',
+                    data: {
+                        act: 'add',
+                        domain: content
+                    },
+                    dataType: 'json',
+                    success: function(data) {
+                        layer.close(ii);
+                        if (data.code == 0) {
+                            layer.alert(data.msg, {
+                                icon: 1
+                            }, function() {
+                                layer.closeAll();
+                            });
+                        } else {
+                            layer.alert(data.msg, {
+                                icon: 0
+                            });
+                        }
+                    },
+                    error: function(data) {
+                        layer.close(ii);
+                        layer.msg('服务器错误');
+                    }
+                });
+            }
         });
     }
 </script>
