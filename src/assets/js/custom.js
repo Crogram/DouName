@@ -75,7 +75,7 @@ if (typeof $.fn.bootstrapTable !== "undefined") {
             return params;
         },
         formatLoadingMessage: function(){
-            return '';
+            return '加载中';
         },
         formatShowingRows: function(t,n,r,e){
             return '显示第 '+t+' 到第 '+n+' 条, 总共 <b>'+r+'</b> 条';

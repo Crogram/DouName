@@ -77,9 +77,9 @@ if ($admin_islogin == 1) {
         </table>
     </div>
 </div>
-<script src="//cdn.staticfile.org/layer/3.1.1/layer.min.js"></script>
-<script src="//cdn.staticfile.org/bootstrap-table/1.20.2/bootstrap-table.min.js"></script>
-<script src="//cdn.staticfile.org/bootstrap-table/1.20.2/extensions/page-jump-to/bootstrap-table-page-jump-to.min.js"></script>
+<script src="<?php echo $cdnpublic; ?>layer/3.1.1/layer.min.js"></script>
+<script src="<?php echo $cdnpublic; ?>bootstrap-table/1.20.2/bootstrap-table.min.js"></script>
+<script src="<?php echo $cdnpublic; ?>bootstrap-table/1.20.2/extensions/page-jump-to/bootstrap-table-page-jump-to.min.js"></script>
 <script src="../assets/js/custom.js"></script>
 <script>
     $(document).ready(function() {

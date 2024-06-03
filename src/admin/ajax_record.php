@@ -12,7 +12,6 @@ if (!checkRefererHost()) exit('{"code":403}');
 switch ($act) {
     case 'list':
         $sql = " 1=1";
-        // $type_arr = array('aliyun' => 'aliyun', 'juming' => '聚名网', 'tencent' => '腾讯', 'xinnet' => '新网');
         if (isset($_POST['dstatus']) && $_POST['dstatus'] > -1) {
             $dstatus = intval($_POST['dstatus']);
             $sql .= " AND `enable`={$dstatus}";

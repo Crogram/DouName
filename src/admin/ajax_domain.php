@@ -13,14 +13,12 @@ switch ($act) {
     case 'list':
         $sql = " 1=1";
         $domain_kw = isset($_POST['kw']) && !empty($_POST['kw']) ? trim(daddslashes($_POST['kw'])) : null;
-        $domain_status = isset($_POST['domain_status']) ?intval($_POST['domain_status']) : '';
+        $domain_status = isset($_POST['domain_status']) ? $_POST['domain_status'] : '';
         $domain_registrar = isset($_POST['domain_registrar']) && !empty($_POST['domain_registrar']) ? trim(daddslashes($_POST['domain_registrar'])) : null;
         $domain_provider = isset($_POST['domain_provider']) && !empty($_POST['domain_provider']) ? trim(daddslashes($_POST['domain_provider'])) : null;
         $domain_name = isset($_POST['domain_name']) && !empty($_POST['domain_name']) ? trim(daddslashes($_POST['domain_name'])) : null;
-        // $type_arr = array('aliyun' => 'aliyun', 'juming' => '聚名网', 'tencent' => '腾讯', 'xinnet' => '新网');
         if ($domain_status != '') {
-            // $domain_status = $_POST['domain_status'];
-            $sql .= " AND `domain_status`={$domain_status}";
+            $sql .= " AND `domain_status`={intval($domain_status)}";
         }
         if (!empty($domain_kw)) {
             $sql .= " AND `domain_name` LIKE '%{$domain_kw}%'";
@@ -39,6 +37,23 @@ switch ($act) {
         $list = $DB->findAll('domain', '*', $sql, 'domain_id desc', "$offset,$limit");
 
         exit(json_encode(array('code' => 0, 'total' => $total, 'rows' => $list)));
+        break;
+    case 'details':
+        $sql = " 1=1";
+        $domain_name = isset($_POST['domain_name']) && !empty($_POST['domain_name']) ? trim(daddslashes($_POST['domain_name'])) : null;
+        $domain_id = isset($_POST['domain_id']) && !empty($_POST['domain_id']) ? trim(daddslashes($_POST['domain_id'])) : null;
+
+        $offset = intval($_POST['offset']);
+        $limit = intval($_POST['limit']);
+        $total = $DB->count('domain', "{$sql}");
+        if (!empty($domain_name)) {
+            $sql .= " AND `domain_name`='{$domain_name}'";
+        } else if (!empty($domain_id)) {
+            $sql .= " AND `domain_id`='{$domain_id}'";
+        }
+        $details = $DB->find('domain', '*', $sql);
+
+        exit(json_encode(array('code' => 0, 'data' => $details, 'msg' => 'ok')));
         break;
     case 'set':
         $domain_id = intval($_POST['id']);
@@ -69,7 +84,7 @@ switch ($act) {
         if (!$DB->insert('domain', array(
             'domain_name' => $domain_name,
             'domain_status' => 1,
-            'update_time' => date("Y-m-d H:i:s")
+            'create_time' => date("Y-m-d H:i:s")
         ))) exit('{"code":-1,"msg":"添加域名失败[' . $DB->error() . ']"}');
         exit('{"code":0,"msg":"添加域名成功！"}');
         break;

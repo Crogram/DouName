@@ -32,32 +32,78 @@ switch ($act) {
 
         exit(json_encode(['total' => $total, 'rows' => $list]));
         break;
-        // $sql = " A.status=0";
-        // $domain = trim($_POST['domain']);
-        // $did = intval($_POST['did']);
-        // $appid = trim($_POST['appid']);
+    case 'add':
+        $order_domain   = _post('order_domain');
+        $order_type     = _post('order_type');
+        $order_provider = _post('order_provider');
+        $order_costs    = _post('order_costs');
+        $create_time    = _post('create_time');
+        $order_remark   = _post('order_remark');
 
-        // // TODO 域名删除后就找不到了，此处不能用关联存储，直接存储到表
-        // if (!empty($domain)) {
-        //     $sql .= " AND B.domain='{$domain}'";
-        // } elseif (!empty($did)) {
-        //     $sql .= " AND A.did='{$did}'";
-        // }
-        // if (!empty($appid)) {
-        //     $sql .= " AND `appid`='{$appid}'";
-        // }
-        // $offset = intval($_POST['offset']);
-        // $limit = intval($_POST['limit']);
-        // $total = $DB->getColumn("SELECT count(A.id) FROM pre_order A JOIN pre_domain B ON A.did=B.id WHERE{$sql}");
-        // $list = $DB->getAll("SELECT A.*,B.domain FROM pre_order A JOIN pre_domain B ON A.did=B.id WHERE{$sql} order by A.id desc limit $offset,$limit");
+        if (empty($order_domain))   exit('{"code":-1,"msg":"域名不能为空"}');
+        if (empty($order_type))     exit('{"code":-1,"msg":"订单类型不能为空"}');
+        if (empty($order_provider)) exit('{"code":-1,"msg":"订单服务商不能为空"}');
+        if (empty($create_time))    exit('{"code":-1,"msg":"下单时间不能为空"}');
+        if (empty($order_costs))    exit('{"code":-1,"msg":"订单金额不能为空"}');
+        if (!$DB->insert('order', [
+            'order_domain'   => $order_domain,
+            'order_type'     => $order_type,
+            'order_provider' => $order_provider,
+            'create_time'    => $create_time,
+            'order_costs'    => $order_costs,
+            'order_remark'   => $order_remark,
+        ])) exit('{"code":-1,"msg":"添加订单失败[' . $DB->error() . ']"}');
+        exit('{"code":0,"msg":"添加订单成功！"}');
+        break;
+    case 'update':
+        $id             = intval(_post('id'));
+        $order_domain   = _post('order_domain');
+        $order_type     = _post('order_type');
+        $order_provider = _post('order_provider');
+        $create_time    = _post('create_time');
+        $order_costs    = _post('order_costs');
+        $order_remark   = _post('order_remark');
 
-        // exit(json_encode(['total' => $total, 'rows' => $list]));
-        // break;
+        if (empty($order_domain))   exit('{"code":-1,"msg":"域名不能为空"}');
+        if (empty($order_type))     exit('{"code":-1,"msg":"订单类型不能为空"}');
+        if (empty($order_provider)) exit('{"code":-1,"msg":"订单服务商不能为空"}');
+        if (empty($create_time))    exit('{"code":-1,"msg":"下单时间不能为空"}');
+        if (empty($order_costs))    exit('{"code":-1,"msg":"订单金额不能为空"}');
+
+        if (!$DB->update(
+            'order',
+            [
+                'order_domain'   => $order_domain,
+                'order_type'     => $order_type,
+                'order_provider' => $order_provider,
+                'create_time'    => $create_time,
+                'order_costs'    => $order_costs,
+                'order_remark'   => $order_remark,
+                'update_time'    => date("Y-m-d H:i:s")
+            ],
+            ['order_id' => $id]
+        )) exit('{"code":-1,"msg":"修改订单失败：[' . $DB->error() . ']"}');
+        exit('{"code":0,"msg":"修改订单成功"}');
+        break;
+    case 'info':
+        $id = intval(_get('id'));
+        $row = $DB->find('order', '*', ['order_id' => $id]);
+        if (!$row) exit('{"code":-1,"msg":"订单不存在"}');
+        exit(json_encode(['code' => 0, 'data' => $row]));
+        break;
+    case 'delete':
+        $id = intval(_post('id'));
+        $row = $DB->find('order', 'order_id', ['order_id' => $id]);
+        if (!$row) exit('{"code":-1,"msg":"订单不存在"}');
+        if ($DB->delete('order', ['order_id' => $id])) {
+            exit('{"code":0,"msg":"删除订单成功"}');
+        } else exit('{"code":-1,"msg":"删除订单失败[' . $DB->error() . ']"}');
+        break;
     case 'remark':
-        $order_id = intval($_POST['id']);
+        $id = intval(_post('id'));
         $order_remark = trim(daddslashes($_POST['remark']));
-        if (empty($order_id)) exit('{"code":-1,"msg":"id不能为空"}');
-        if (!$DB->update('order', array('order_remark' => $order_remark, 'update_time' => date("Y-m-d H:i:s")), ['order_id' => $order_id])) {
+        if (empty($id)) exit('{"code":-1,"msg":"id不能为空"}');
+        if (!$DB->update('order', array('order_remark' => $order_remark, 'update_time' => date("Y-m-d H:i:s")), ['order_id' => $id])) {
             exit('{"code":-1,"msg":"修改备注失败[' . $DB->error() . ']"}');
         }
         exit('{"code":0,"msg":"修改备注成功！"}');

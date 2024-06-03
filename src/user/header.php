@@ -14,10 +14,10 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="format-detection" content="telephone=no">
     <!-- Bootstrap Style -->
-    <link href="//cdn.staticfile.org/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-    <link href="//cdn.staticfile.org/twitter-bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link href="<?php echo $cdnpublic; ?>font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="<?php echo $cdnpublic; ?>twitter-bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="assets/css/style.css?v=<?php echo VERSION ?>" rel="stylesheet">
-    <script type="text/javascript" src="//cdn.staticfile.org/jquery/1.12.4/jquery.min.js"></script>
+    <script type="text/javascript" src="<?php echo $cdnpublic; ?>jquery/1.12.4/jquery.min.js"></script>
 </head>
 
 <body>

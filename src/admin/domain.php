@@ -14,13 +14,13 @@ if ($admin_islogin != 1) exit("<script language='javascript'>window.location.hre
             </div>
             <select class="form-control" name="domain_status">
                 <option value="">域名状态</option>
-                <option value="1">有效</option>
+                <option value="1" selected>有效</option>
                 <option value="0">无效</option>
             </select>
             <select class="form-control" name="domain_provider">
                 <option value="">域名服务商</option>
                 <option value="aliyun">阿里云</option>
-                <option value="tencent">腾讯</option>
+                <option value="tencent">腾讯云</option>
                 <option value="juming">聚名网</option>
                 <option value="xinnet">新网</option>
                 <option value="huaweicloud">华为云</option>
@@ -33,7 +33,7 @@ if ($admin_islogin != 1) exit("<script language='javascript'>window.location.hre
             <select class="form-control" name="domain_registrar">
                 <option value="">域名注册商</option>
                 <option value="aliyun">阿里云</option>
-                <option value="tencent">腾讯</option>
+                <option value="tencent">腾讯云</option>
                 <option value="juming">聚名网</option>
                 <option value="xinnet">新网</option>
                 <option value="72e">联动天下</option>
@@ -48,9 +48,9 @@ if ($admin_islogin != 1) exit("<script language='javascript'>window.location.hre
         <table id="listTable"></table>
     </div>
 </div>
-<script src="//cdn.staticfile.org/layer/3.1.1/layer.js"></script>
-<script src="//cdn.staticfile.org/bootstrap-table/1.20.2/bootstrap-table.min.js"></script>
-<script src="//cdn.staticfile.org/bootstrap-table/1.20.2/extensions/page-jump-to/bootstrap-table-page-jump-to.min.js"></script>
+<script src="<?php echo $cdnpublic; ?>layer/3.1.1/layer.js"></script>
+<script src="<?php echo $cdnpublic; ?>bootstrap-table/1.20.2/bootstrap-table.min.js"></script>
+<script src="<?php echo $cdnpublic; ?>bootstrap-table/1.20.2/extensions/page-jump-to/bootstrap-table-page-jump-to.min.js"></script>
 <script src="../assets/js/custom.js"></script>
 <script>
     $(document).ready(function() {
@@ -83,9 +83,11 @@ if ($admin_islogin != 1) exit("<script language='javascript'>window.location.hre
                             case '1':
                                 return '<a href="javascript:appSetStatus(' + row.domain_id + ', 0)" class="btn btn-success btn-xs" title="点击设置为无效">有效</a>';
                                 break;
-                            default:
+                            case '0':
                                 return '<a href="javascript:appSetStatus(' + row.domain_id + ', 1)" class="btn btn-warning btn-xs" title="点击设置为有效">无效</a>';
                                 break;
+                            default:
+                                return value;
                         }
                     }
                 },
@@ -97,6 +99,10 @@ if ($admin_islogin != 1) exit("<script language='javascript'>window.location.hre
                     }
                 },
                 {
+                    field: 'domain_icp',
+                    title: '备案号'
+                },
+                {
                     field: 'domain_provider',
                     title: '服务商',
                     formatter: function(value, row, index) {
@@ -105,7 +111,7 @@ if ($admin_islogin != 1) exit("<script language='javascript'>window.location.hre
                                 return '阿里云';
                                 break;
                             case 'tencent':
-                                return '腾讯';
+                                return '腾讯云';
                                 break;
                             case 'juming':
                                 return '聚名网';
@@ -131,6 +137,8 @@ if ($admin_islogin != 1) exit("<script language='javascript'>window.location.hre
                             case 'squarespace':
                                 return 'Squarespace';
                                 break;
+                            default:
+                                return value;
                         }
                     }
                 },
@@ -143,7 +151,7 @@ if ($admin_islogin != 1) exit("<script language='javascript'>window.location.hre
                                 return '阿里云';
                                 break;
                             case 'tencent':
-                                return '腾讯';
+                                return '腾讯云';
                                 break;
                             case 'juming':
                                 return '聚名网';
@@ -163,15 +171,17 @@ if ($admin_islogin != 1) exit("<script language='javascript'>window.location.hre
                             case 'squarespace':
                                 return 'Squarespace';
                                 break;
+                            default:
+                                return value;
                         }
                     }
                 },
                 {
-                    field: 'expire_time',
+                    field: 'domain_expire_time',
                     title: '到期时间'
                 },
                 {
-                    field: 'create_time',
+                    field: 'domain_create_time',
                     title: '注册时间'
                 },
                 {
@@ -183,6 +193,7 @@ if ($admin_islogin != 1) exit("<script language='javascript'>window.location.hre
                     title: '操作',
                     formatter: function(value, row, index) {
                         var html = '<a href="./order.php?domain=' + row.domain_name + '" class="btn btn-primary btn-xs">订单</a>';
+                        html += '<a href="./domain_details.php?domain=' + row.domain_name + '" class="btn btn-primary btn-xs">详情</a>';
                         html += ' <a href="javascript:appWhoisDomain(\'' + row.domain_name + '\')" class="btn btn-info btn-xs">WHOIS</a>';
                         html += ' <a href="javascript:appUpdateDomain(' + row.domain_id + ')" class="btn btn-default btn-xs">更新时间</a>';
                         // html += ' <a href="javascript:appDelDomain(' + row.domain_id + ')" class="btn btn-danger btn-xs">删除</a>';

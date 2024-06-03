@@ -87,7 +87,7 @@ if (isset($_GET['query'])) {
     <meta name="format-detection" content="telephone=no,email=no">
 
     <link rel="icon" href="favicon.ico" />
-    <link rel="stylesheet" href="//cdn.staticfile.org/twitter-bootstrap/3.4.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="<?php echo $cdnpublic; ?>twitter-bootstrap/3.4.1/css/bootstrap.min.css">
     <style>
         html {
             position: relative;
@@ -188,8 +188,8 @@ if (isset($_GET['query'])) {
             </footer>
         </div>
     </div>
-    <script src="//cdn.staticfile.org/jquery/2.1.4/jquery.min.js"></script>
-    <script src="//cdn.staticfile.org/twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="<?php echo $cdnpublic; ?>jquery/2.1.4/jquery.min.js"></script>
+    <script src="<?php echo $cdnpublic; ?>twitter-bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </body>
 
 </html>

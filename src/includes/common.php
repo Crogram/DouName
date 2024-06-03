@@ -49,7 +49,7 @@ Autoloader::register();
 
 require ROOT . '/config.php';
 
-if (!$dbconfig['user'] || !$dbconfig['pwd'] || !$dbconfig['dbname']) //检测安装1
+if (!$dbconfig['user'] || !$dbconfig['pwd'] || !$dbconfig['dbname']) // 检测安装1
 {
     header('Content-type:text/html;charset=utf-8');
     echo '你还没安装！<a href="' . $site_url . '/install/">点此安装</a>';
@@ -58,7 +58,7 @@ if (!$dbconfig['user'] || !$dbconfig['pwd'] || !$dbconfig['dbname']) //检测安
 
 $DB = new \lib\PdoHelper($dbconfig);
 
-if ($DB->query("select * from pre_config where 1") == FALSE) //检测安装2
+if ($DB->query("select * from pre_config where 1") == FALSE) // 检测安装2
 {
     header('Content-type:text/html;charset=utf-8');
     echo '你还没安装！<a href="' . $site_url . '/install/">点此安装</a>';
@@ -80,6 +80,20 @@ if (!$conf['version'] || $conf['version'] < DB_VERSION) {
 }
 
 $clientip = real_ip(isset($conf['ip_type']) ? $conf['ip_type'] : 0);
+
+if ($conf['cdnpublic'] == 1) {
+    $cdnpublic = 'https://cdn.staticfile.org/';
+} elseif ($conf['cdnpublic'] == 2) {
+    $cdnpublic = 'https://cdn.staticfile.net/';
+} elseif ($conf['cdnpublic'] == 3) {
+    $cdnpublic = 'https://lib.baomitu.com/';
+} elseif ($conf['cdnpublic'] == 4) {
+    $cdnpublic = 'https://cdn.bootcdn.net/ajax/libs/';
+} elseif ($conf['cdnpublic'] == 5) {
+    $cdnpublic = 'https://s1.pstatp.com/cdn/expire-1-M/';
+} else {
+    $cdnpublic = $site_http . '/assets/';
+}
 
 $admin_islogin = 0;
 
