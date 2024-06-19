@@ -8,6 +8,10 @@ DouName 是一款基于 PHP+MySQL 开发的域名资产管理系统。通过本�
 2. 域名 Whois 查询工具；
 3. 域名订单管理：添加和编辑订单信息；
 
+## 预览截图
+
+![程江域名资产管理系统](assets/screenshot.png)
+
 ## 开发计划
 
 1. 域名 Whois 信息同步到本地功能：注册时间、到期时间以及注册商等信息；
@@ -51,7 +55,19 @@ location / {
 </IfModule>
 ```
 
-### 使用方法
+### 赞助项目
+
+开源不易, 有了您的赞助, 我们会做的更好。转账时请备注您的称呼，方便我们在网站 [https://crogram.org/sponsors](https://crogram.org/sponsors.html) 上展示。
+
+<img src="assets/donation-weixin.jpg" alt="使用微信赞赏码" style="zoom: 45%;" /><img src="assets/donation-alipay.jpg" alt="使用支付宝转账" style="zoom:33%;" />
+
+## 开源许可
+
+DouName 采用 [BSD](./LICENSE) 许可发布。个人使用无限制。商业使用请联系我们获得授权许可。
+
+## 作者
+
+[Jackson Dou](https://github.com/jksdou 'Jackson Dou')
 
 ### 版权信息
 
