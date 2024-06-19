@@ -168,6 +168,19 @@ $checkupdate = '//auth.u-id.cn/app/php-app-domain.php?ver=' . VERSION;
                     </ul>
                     <ul class="list-group text-dark" id="checkupdate"></ul>
                 </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">支持信息</h3>
+                    </div>
+                    <ul class="list-group text-dark">
+                        <li class="list-group-item">
+                            <a href="https://github.com/Crogram/DouName" target="_blank">源码下载</a>，<a href="https://github.com/Crogram/DouName/issues" target="_blank">交流反馈</a>
+                        </li>
+                        <li class="list-group-item">联系微信：jksdou</li>
+                        <li class="list-group-item">联系邮箱：jksdou@qq.com</li>
+                        <li class="list-group-item">联系ＱＱ：350430869</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
