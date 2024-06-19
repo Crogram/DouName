@@ -28,38 +28,14 @@ DouName 是一款基于 PHP+MySQL 开发的域名资产管理系统。通过本�
 - 将 `src` 目录内文件全部上传到网站运行目录
 - 访问网站，会自动跳转到安装页面，根据提示填写配置信息，进行安装
 - 安装完成后，访问 /admin 进入后台管理
-- 设置伪静态，规则见下方
-
-### 伪静态规则
-
-- Nginx
-
-```nginx
-location / {
-  if (!-e $request_filename) {
-    rewrite ^(.*)$ /index.php?s=$1 last; break;
-  }
-}
-```
-
-- Apache
-
-```xml
-<IfModule mod_rewrite.c>
-  Options +FollowSymlinks -Multiviews
-  RewriteEngine On
-
-  RewriteCond %{REQUEST_FILENAME} !-d
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteRule ^(.*)$ index.php/$1 [QSA,PT,L]
-</IfModule>
-```
 
 ### 赞助项目
 
-开源不易, 有了您的赞助, 我们会做的更好。转账时请备注您的称呼，方便我们在网站 [https://crogram.org/sponsors](https://crogram.org/sponsors.html) 上展示。
+开源不易, 有了您的赞助, 我们会做的更好。
 
-<img src="assets/donation-weixin.jpg" alt="使用微信赞赏码" style="zoom: 45%;" /><img src="assets/donation-alipay.jpg" alt="使用支付宝转账" style="zoom:33%;" />
+<img src="assets/donation-weixin.jpg" alt="使用微信赞赏码" style="width: 25%;" /><img src="assets/donation-alipay.jpg" alt="使用支付宝转账" style="width:33%;" />
+
+转账时请备注您的称呼，方便我们在网站 [https://crogram.org/sponsors](https://crogram.org/sponsors.html) 上展示。
 
 ## 开源许可
 
