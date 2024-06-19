@@ -29,12 +29,12 @@ switch ($act) {
         break;
     case 'set':
         // 修改配置
-        if (isset($_POST['green_label_porn'])) {
-            $_POST['green_label_porn'] = implode(',', $_POST['green_label_porn']);
-        }
-        if (isset($_POST['green_label_terrorism'])) {
-            $_POST['green_label_terrorism'] = implode(',', $_POST['green_label_terrorism']);
-        }
+        // if (isset($_POST['green_label_porn'])) {
+        //     $_POST['green_label_porn'] = implode(',', $_POST['green_label_porn']);
+        // }
+        // if (isset($_POST['green_label_terrorism'])) {
+        //     $_POST['green_label_terrorism'] = implode(',', $_POST['green_label_terrorism']);
+        // }
         foreach ($_POST as $k => $v) {
             saveSetting($k, $v);
         }

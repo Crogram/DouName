@@ -20,21 +20,21 @@ $mod = isset($_GET['mod']) ? $_GET['mod'] : 'site';
                 </div>
                 <div class="panel-body">
                     <form onsubmit="return saveSetting(this)" method="post" class="form-horizontal" role="form">
-                        <!-- <div class="form-group">
+                        <div class="form-group">
                             <label class="col-sm-2 control-label">网站名</label>
-                            <div class="col-sm-10"><input type="text" name="title" value="<?php echo $conf['site_name']; ?>" class="form-control" required /></div>
-                        </div> -->
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label">网站标题</label>
-                            <div class="col-sm-10"><input type="text" name="title" value="<?php echo $conf['site_title']; ?>" class="form-control" required /></div>
+                            <div class="col-sm-10"><input type="text" name="site_name" value="<?php echo $conf['site_name']; ?>" class="form-control" required /></div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">关键字</label>
-                            <div class="col-sm-10"><input type="text" name="keywords" value="<?php echo $conf['site_keywords']; ?>" class="form-control" /></div>
+                            <label class="col-sm-2 control-label">SEO标题</label>
+                            <div class="col-sm-10"><input type="text" name="site_title" value="<?php echo $conf['site_title']; ?>" class="form-control" required /></div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-2 control-label">网站描述</label>
-                            <div class="col-sm-10"><input type="text" name="description" value="<?php echo $conf['site_description']; ?>" class="form-control" /></div>
+                            <label class="col-sm-2 control-label">SEO关键字</label>
+                            <div class="col-sm-10"><input type="text" name="site_keywords" value="<?php echo $conf['site_keywords']; ?>" class="form-control" /></div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">SEO网站描述</label>
+                            <div class="col-sm-10"><input type="text" name="site_description" value="<?php echo $conf['site_description']; ?>" class="form-control" /></div>
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label">网站QQ</label>
@@ -161,7 +161,8 @@ $mod = isset($_GET['mod']) ? $_GET['mod'] : 'site';
                                 icon: 1,
                                 closeBtn: false
                             }, function() {
-                                window.location.reload()
+                                layer.closeAll();
+                                // window.location.reload()
                             });
                         } else {
                             layer.alert(data.msg, {

@@ -34,7 +34,7 @@ if (!defined('IN_CRONLITE')) return;
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="./"><?php echo $conf['site_title']; ?></a>
+                    <a class="navbar-brand" href="./"><?php echo $conf['site_name']; ?></a>
                 </div><!-- /.navbar-header -->
                 <div id="navbar" class="collapse navbar-collapse">
                     <ul class="nav navbar-nav navbar-right">
@@ -47,12 +47,12 @@ if (!defined('IN_CRONLITE')) return;
                         <li class="<?php echo checkIfActive('order'); ?>">
                             <a href="./order.php"><i class="fa fa-list fa-fw"></i> 订单</a>
                         </li>
-                        <li class="<?php echo checkIfActive('pages'); ?>">
+                        <!-- <li class="<?php echo checkIfActive('pages'); ?>">
                             <a href="./pages.php"><i class="fa fa-weixin fa-fw"></i> 页面</a>
-                        </li>
-                        <li class="<?php echo checkIfActive('record'); ?>">
+                        </li> -->
+                        <!-- <li class="<?php echo checkIfActive('record'); ?>">
                             <a href="./record.php"><i class="fa fa-weixin fa-fw"></i> 解析</a>
-                        </li>
+                        </li> -->
                         <li class="<?php echo checkIfActive('set'); ?>">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                                 <i class="fa fa-cog fa-fw"></i> 系统 <b class="caret"></b>

@@ -120,7 +120,7 @@ if ($admin_islogin != 1) exit("<script language='javascript'>window.location.hre
                     title: '添加时间'
                 },
                 {
-                    field: 'updatetime',
+                    field: 'update_time',
                     title: '最后更新时间'
                 },
                 {

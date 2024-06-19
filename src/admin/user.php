@@ -125,7 +125,7 @@ if ($admin_islogin == 1) {
                     field: 'create_time',
                     title: '注册时间/最后登录',
                     formatter: function(value, row, index) {
-                        return value + '<br/>' + row.lasttime;
+                        return value + '<br/>' + row.update_time;
                     }
                 },
                 {

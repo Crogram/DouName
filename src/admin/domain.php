@@ -191,13 +191,14 @@ if ($admin_islogin != 1) exit("<script language='javascript'>window.location.hre
                 {
                     field: '',
                     title: '操作',
+                    width: '120',
                     formatter: function(value, row, index) {
                         var html = '<a href="./order.php?domain=' + row.domain_name + '" class="btn btn-primary btn-xs">订单</a>';
-                        html += '<a href="./domain_details.php?domain=' + row.domain_name + '" class="btn btn-primary btn-xs">详情</a>';
+                        // html += '<a href="./domain_details.php?domain=' + row.domain_name + '" class="btn btn-primary btn-xs">详情</a>';
                         html += ' <a href="javascript:appWhoisDomain(\'' + row.domain_name + '\')" class="btn btn-info btn-xs">WHOIS</a>';
-                        html += ' <a href="javascript:appUpdateDomain(' + row.domain_id + ')" class="btn btn-default btn-xs">更新时间</a>';
+                        // html += ' <a href="javascript:appUpdateDomain(' + row.domain_id + ')" class="btn btn-default btn-xs">更新时间</a>';
                         // html += ' <a href="javascript:appDelDomain(' + row.domain_id + ')" class="btn btn-danger btn-xs">删除</a>';
-                        html += ' <a href="record.php?domain=' + row.domain_name + '" class="btn btn-primary btn-xs">解析</a>';
+                        // html += ' <a href="record.php?domain=' + row.domain_name + '" class="btn btn-primary btn-xs">解析</a>';
                         return html;
                     }
                 },

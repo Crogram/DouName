@@ -58,7 +58,7 @@ if(isset($_GET['logout'])){
             'regip' => $clientip,
             'loginip' => $clientip,
             'create_time' => 'NOW()',
-            'lasttime' => 'NOW()',
+            'update_time' => 'NOW()',
         ]))sysmsg('用户注册失败 '.$DB->error());
         $uid = $DB->lastInsertId();
     }else{
@@ -67,7 +67,7 @@ if(isset($_GET['logout'])){
             sysmsg('当前用户已被禁止登录');
         }
         $uid = $userrow['uid'];
-        $DB->update('user', ['loginip' => $clientip, 'lasttime'=>'NOW()'], ['uid'=>$uid]);
+        $DB->update('user', ['loginip' => $clientip, 'update_time'=>'NOW()'], ['uid'=>$uid]);
     }
     if($_SESSION['user_block']){
         $DB->update('user', ['enable' => 0], ['uid'=>$uid]);
