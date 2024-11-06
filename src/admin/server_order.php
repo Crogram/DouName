@@ -29,13 +29,15 @@ if ($admin_islogin != 1) exit("<script language='javascript'>window.location.hre
                     <option value="ucloud">优刻得</option>
                     <option value="juming">聚名网</option>
                     <option value="xinnet">新网</option>
-                    <option value="huaweicloud">华为云</option>
+                    <option value="huawei">华为云</option>
                     <option value="72e">联动天下</option>
                     <option value="google">Google</option>
                     <option value="cloudflare">Cloudflare</option>
                     <option value="virmach">VirMach</option>
                     <option value="amazon">亚马逊</option>
                     <option value="raksmart">Raksmart</option>
+                    <option value="west">西部数码</option>
+                    <option value="freenom">Freenom</option>
                 </select>
                 <div class="form-group">
                     <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i> 搜索</button>
@@ -127,7 +129,7 @@ if ($admin_islogin != 1) exit("<script language='javascript'>window.location.hre
                             case 'xinnet':
                                 return '新网';
                                 break;
-                            case 'huaweicloud':
+                            case 'huawei':
                                 return '华为云';
                                 break;
                             case '72e':
@@ -147,6 +149,12 @@ if ($admin_islogin != 1) exit("<script language='javascript'>window.location.hre
                                 break;
                             case 'raksmart':
                                 return 'Raksmart';
+                                break;
+                            case 'west':
+                                return '西部数码';
+                                break;
+                            case 'freenom':
+                                return 'Freenom';
                                 break;
                             default:
                                 return value;

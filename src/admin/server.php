@@ -1,30 +1,30 @@
 <?php
 include("../includes/common.php");
-$title = '域名管理';
+$title = '主机管理';
 include './head.php';
 if ($admin_islogin != 1) exit("<script language='javascript'>window.location.href='./login.php';</script>");
 ?>
 
-<div class="container" style="padding-top:70px;">
+<div class="container-fluid" style="padding-top:70px;">
     <div class="col-md-12 center-block" style="float: none;">
         <form onsubmit="return searchSubmit()" method="GET" class="form-inline" id="searchToolbar">
             <input type="hidden" name="server_id" />
             <div class="form-group">
                 <label>搜索</label>
-                <input type="text" class="form-control" name="kw" placeholder="要搜索的域名">
+                <input type="text" class="form-control" name="kw" placeholder="要搜索的主机">
             </div>
             <select class="form-control" name="server_status">
-                <option value="">域名状态</option>
+                <option value="">主机状态</option>
                 <option value="1">有效</option>
                 <option value="0">无效</option>
             </select>
             <select class="form-control" name="server_provider">
-                <option value="">域名服务商</option>
+                <option value="">主机服务商</option>
                 <option value="aliyun">阿里云</option>
                 <option value="tencent">腾讯云</option>
                 <option value="juming">聚名网</option>
                 <option value="xinnet">新网</option>
-                <option value="huaweicloud">华为云</option>
+                <option value="huawei">华为云</option>
                 <option value="zzidc">景安</option>
                 <option value="72e">联动天下</option>
                 <option value="google">Google</option>
@@ -32,7 +32,7 @@ if ($admin_islogin != 1) exit("<script language='javascript'>window.location.hre
                 <option value="squarespace">Squarespace</option>
             </select>
             <select class="form-control" name="server_region">
-                <option value="">域名注册商</option>
+                <option value="">主机注册商</option>
                 <option value="aliyun">阿里云</option>
                 <option value="tencent">腾讯云</option>
                 <option value="juming">聚名网</option>
@@ -56,7 +56,7 @@ if ($admin_islogin != 1) exit("<script language='javascript'>window.location.hre
 <script>
     $(document).ready(function() {
         updateToolbar();
-        const defaultPageSize = 2;
+        const defaultPageSize = 10;
         const pageNumber = typeof window.$_GET['pageNumber'] != 'undefined' ? parseInt(window.$_GET['pageNumber']) : 1;
         const pageSize = typeof window.$_GET['pageSize'] != 'undefined' ? parseInt(window.$_GET['pageSize']) : defaultPageSize;
 
@@ -109,33 +109,6 @@ if ($admin_islogin != 1) exit("<script language='javascript'>window.location.hre
                     }
                 },
                 {
-                    field: 'server_type',
-                    title: '托管类型',
-                    formatter: function(value, row, index) {
-                        switch (String(value)) {
-                            case 'dedicated':
-                                return '独享';
-                                break;
-                            case 'shared':
-                                return '共享主机';
-                                break;
-                            default:
-                                return value;
-                        }
-                    }
-                },
-                {
-                    field: 'server_region',
-                    title: '服务器位置',
-                },
-                {
-                    field: 'server_remark',
-                    title: '备注',
-                    formatter: function(value, row, index) {
-                        return '<span onClick="appEditRemarks(\'' + row.server_id + '\', \'' + (value || '') + '\')">' + (value || '-') + '</span>';
-                    }
-                },
-                {
                     field: 'server_provider',
                     title: '服务商',
                     formatter: function(value, row, index) {
@@ -164,6 +137,33 @@ if ($admin_islogin != 1) exit("<script language='javascript'>window.location.hre
                             default:
                                 return value;
                         }
+                    }
+                },
+                {
+                    field: 'server_type',
+                    title: '托管类型',
+                    formatter: function(value, row, index) {
+                        switch (String(value)) {
+                            case 'dedicated':
+                                return '独享';
+                                break;
+                            case 'shared':
+                                return '共享主机';
+                                break;
+                            default:
+                                return value;
+                        }
+                    }
+                },
+                {
+                    field: 'server_region',
+                    title: '服务器位置',
+                },
+                {
+                    field: 'server_remark',
+                    title: '备注',
+                    formatter: function(value, row, index) {
+                        return '<span onClick="appEditRemarks(\'' + row.server_id + '\', \'' + (value || '') + '\')">' + (value || '-') + '</span>';
                     }
                 },
                 {
@@ -199,8 +199,8 @@ if ($admin_islogin != 1) exit("<script language='javascript'>window.location.hre
             type: 1,
             area: ['350px'],
             closeBtn: 2,
-            title: '添加域名',
-            content: '<div style="padding:15px 15px 0 15px"><div class="form-group"><input class="form-control" type="text" name="content" value="" autocomplete="off" placeholder="请输入域名，顶级域名，不带www"></div></div>',
+            title: '添加主机',
+            content: '<div style="padding:15px 15px 0 15px"><div class="form-group"><input class="form-control" type="text" name="content" value="" autocomplete="off" placeholder="请输入主机，顶级域名，不带www"></div></div>',
             btn: ['确认', '取消'],
             yes: function() {
                 var content = $("input[name='content']").val();
@@ -245,7 +245,7 @@ if ($admin_islogin != 1) exit("<script language='javascript'>window.location.hre
 
     function appEditRemarks(id, current) {
         layer.prompt({
-                title: '请输入域名备注',
+                title: '请输入主机备注',
                 value: current || '',
             },
             function(value, index, elem) {
@@ -303,7 +303,7 @@ if ($admin_islogin != 1) exit("<script language='javascript'>window.location.hre
     }
 
     function appUpdateServer(id) {
-        layer.confirm('更新此域名到期日期吗 ？', {
+        layer.confirm('更新此主机到期日期吗 ？', {
             icon: 3,
             btn: ['确定', '取消']
         }, function() {
@@ -333,7 +333,7 @@ if ($admin_islogin != 1) exit("<script language='javascript'>window.location.hre
     }
 
     function appDelServer(id) {
-        layer.confirm('确定要删除此域名吗 ？', {
+        layer.confirm('确定要删除此主机吗 ？', {
             icon: 3,
             btn: ['确定', '取消']
         }, function() {
@@ -379,7 +379,7 @@ if ($admin_islogin != 1) exit("<script language='javascript'>window.location.hre
                 if (data.code == 0) {
                     layer.open({
                         type: 1,
-                        title: '域名信息查看', // 不显示标题栏
+                        title: '主机信息查看', // 不显示标题栏
                         closeBtn: 0,
                         area: ['700px', '500px'], // 宽高
                         content: '<div style="padding: 15px;"><pre>' + data.data + '</pre></div>',

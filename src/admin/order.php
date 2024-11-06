@@ -29,11 +29,15 @@ if ($admin_islogin != 1) exit("<script language='javascript'>window.location.hre
                     <option value="tencent">腾讯云</option>
                     <option value="juming">聚名网</option>
                     <option value="xinnet">新网</option>
-                    <option value="huaweicloud">华为云</option>
+                    <option value="huawei">华为云</option>
                     <option value="zzidc">景安</option>
                     <option value="72e">联动天下</option>
                     <option value="google">Google</option>
                     <option value="cloudflare">Cloudflare</option>
+                    <option value="west">西部数码</option>
+                    <option value="22cn">爱名网</option>
+                    <option value="ename">易名网</option>
+                    <option value="freenom">Freenom</option>
                 </select>
                 <div class="form-group">
                     <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i> 搜索</button>
@@ -79,11 +83,15 @@ if ($admin_islogin != 1) exit("<script language='javascript'>window.location.hre
                 <option value="tencent">腾讯云</option>
                 <option value="juming">聚名网</option>
                 <option value="xinnet">新网</option>
-                <option value="huaweicloud">华为云</option>
+                <option value="huawei">华为云</option>
                 <option value="zzidc">景安</option>
                 <option value="72e">联动天下</option>
                 <option value="google">Google</option>
                 <option value="cloudflare">Cloudflare</option>
+                <option value="west">西部数码</option>
+                <option value="22cn">爱名网</option>
+                <option value="ename">易名网</option>
+                <option value="freenom">Freenom</option>
             </select>
         </div>
     </div>
@@ -184,7 +192,7 @@ if ($admin_islogin != 1) exit("<script language='javascript'>window.location.hre
                             case 'xinnet':
                                 return '新网';
                                 break;
-                            case 'huaweicloud':
+                            case 'huawei':
                                 return '华为云';
                                 break;
                             case '72e':
@@ -198,6 +206,18 @@ if ($admin_islogin != 1) exit("<script language='javascript'>window.location.hre
                                 break;
                             case 'cloudflare':
                                 return 'Cloudflare';
+                                break;
+                            case 'west':
+                                return '西部数码';
+                                break;
+                            case '22cn':
+                                return '爱名网';
+                                break;
+                            case 'ename':
+                                return '易名网';
+                                break;
+                            case 'freenom':
+                                return 'Freenom';
                                 break;
                             default:
                                 return value;
